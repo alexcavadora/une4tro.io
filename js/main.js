@@ -1,6 +1,9 @@
 import { initMenu } from "./menu.js";
 import { initGame } from "./game.js";
 
-initMenu(() => {
-  initGame();
-});
+initGame();
+document.getElementById("menu").style.display = "none";
+
+// initMenu(() => {
+//   initGame();
+// });
