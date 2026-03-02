@@ -25,6 +25,7 @@ let player_2_score = 0;
 let turn = 0;
 let score_changed = false;
 let current_height = 0;
+
 //setup scene
 export function initGame() {
   //lighting
@@ -74,6 +75,9 @@ export function initGame() {
   play_piece(3, 0);
   play_piece(3, 1);
 
+  play_piece(1, 0);
+  play_piece(1, 1);
+  
   play_piece(1, 0);
   play_piece(1, 1);
 
@@ -349,6 +353,24 @@ function check_stairs_diagonal() {
 
   let p1_connected = 0;
   let p2_connected = 0;
+
+  for (let idx = 0; idx < n_pieces; idx++) {
+    if (game_state[idx][idx][idx] == 0) break;
+    else if ((game_state[idx][idx][idx] = 1)) p1_connected += 1;
+    else p2_connected += 1;
+  }
+
+  if (p1_connected == n_pieces) {
+    p1_found += 1;
+    console.log("found p1 diagonal stair");
+  }
+  if (p2_connected == n_pieces) {
+    p2_found += 1;
+    console.log("found p2 diagonal stair");
+  }
+
+  p1_connected = 0;
+  p2_connected = 0;
 
   for (let idx = 0; idx < n_pieces; idx++) {
     if (game_state[idx][idx][idx] == 0) break;
