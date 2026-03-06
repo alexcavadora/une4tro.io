@@ -51,40 +51,37 @@ export function initGame() {
   play_piece(0, 0);
   play_piece(0, 1);
 
-  play_piece(1, 0);
+  play_piece(0, 0);
+  play_piece(0, 1);
+
+  play_piece(0, 0);
+  play_piece(0, 1);
+
+  play_piece(0, 0);
+  play_piece(0, 1);
+
   play_piece(1, 1);
+  play_piece(0, 2);
 
-  play_piece(2, 0);
-  play_piece(2, 1);
-
-  play_piece(3, 0);
-  play_piece(3, 1);
-
-  play_piece(2, 0);
-  play_piece(2, 1);
-
-  play_piece(3, 0);
-  play_piece(3, 1);
-
-  play_piece(2, 0);
-  play_piece(2, 1);
-
-  play_piece(3, 0);
-  play_piece(3, 1);
-
-  play_piece(3, 0);
-  play_piece(3, 1);
-
-  play_piece(1, 0);
   play_piece(1, 1);
-  
-  play_piece(1, 0);
-  play_piece(1, 1);
+  play_piece(0, 2);
 
-  //update camera
+  play_piece(1, 1);
+  play_piece(0, 2);
+
+  play_piece(2, 2);
+  play_piece(0, 3);
+
+  play_piece(2, 2);
+  play_piece(0, 3);
+
+  play_piece(3, 3);
+  play_piece(0, 3);
+
+  //update func
   function animate() {
     requestAnimationFrame(animate);
-    orbit_controls.update(); // Update orbit controls
+    orbit_controls.update();
     renderer.render(scene, camera);
   }
 
@@ -164,6 +161,10 @@ function update_score() {
   const [str1, str2] = check_stairs_row_wise();
   player_1_score += str1;
   player_2_score += str2;
+
+  const [std1, std2] = check_stairs_diagonal();
+  player_1_score += std1;
+  player_2_score += std2;
 
   if (
     prev_player_1_score != player_1_score ||
@@ -355,8 +356,9 @@ function check_stairs_diagonal() {
   let p2_connected = 0;
 
   for (let idx = 0; idx < n_pieces; idx++) {
-    if (game_state[idx][idx][idx] == 0) break;
-    else if ((game_state[idx][idx][idx] = 1)) p1_connected += 1;
+    const piece = game_state[idx][idx][idx]
+    if (piece == 0) break;
+    else if ((piece == 1)) p1_connected += 1;
     else p2_connected += 1;
   }
 
@@ -373,8 +375,47 @@ function check_stairs_diagonal() {
   p2_connected = 0;
 
   for (let idx = 0; idx < n_pieces; idx++) {
-    if (game_state[idx][idx][idx] == 0) break;
-    else if ((game_state[idx][idx][idx] = 1)) p1_connected += 1;
+    const piece = game_state[idx][n_pieces - 1 - idx][idx]
+    if (piece == 0) break;
+    else if (piece == 1) p1_connected += 1;
+    else p2_connected += 1;
+  }
+
+  if (p1_connected == n_pieces) {
+    p1_found += 1;
+    console.log("found p1 diagonal stair");
+  }
+  if (p2_connected == n_pieces) {
+    p2_found += 1;
+    console.log("found p2 diagonal stair");
+  }
+
+  p1_connected = 0;
+  p2_connected = 0;
+  
+  for (let idx = 0; idx < n_pieces; idx++) {
+    const piece = game_state[n_pieces - 1 - idx][n_pieces - 1 - idx][idx]
+    if (piece == 0) break;
+    else if (piece == 1) p1_connected += 1;
+    else p2_connected += 1;
+  }
+
+  if (p1_connected == n_pieces) {
+    p1_found += 1;
+    console.log("found p1 diagonal stair");
+  }
+  if (p2_connected == n_pieces) {
+    p2_found += 1;
+    console.log("found p2 diagonal stair");
+  }
+
+  p1_connected = 0;
+  p2_connected = 0;
+  
+  for (let idx = 0; idx < n_pieces; idx++) {
+    const piece = game_state[n_pieces - 1 - idx][idx][idx]
+    if (piece == 0) break;
+    else if (piece == 1) p1_connected += 1;
     else p2_connected += 1;
   }
 
