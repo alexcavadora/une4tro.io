@@ -2,7 +2,7 @@ import * as THREE from "three";
 
 export function create_rods(piece_size, padding_size, n_pieces, pieces_origin) {
   const rod_height = piece_size * n_pieces + padding_size / 2;
-  const rod_geometry = new THREE.CapsuleGeometry(0.1, rod_height);
+  const rod_geometry = new THREE.CapsuleGeometry(0.12, rod_height);
   const rod_material = new THREE.MeshStandardMaterial();
 
   let rods = [];
