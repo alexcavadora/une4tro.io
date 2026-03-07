@@ -1,14 +1,18 @@
 import * as THREE from "three";
 import { piece_size, padding_size, pieces_origin } from "./game";
 
+const piece_material_1 = new THREE.MeshStandardMaterial({
+  color: THREE.Color.NAMES.gold,
+  roughness: 0.3,
+});
+const piece_material_2 = new THREE.MeshStandardMaterial({
+  color: THREE.Color.NAMES.firebrick,
+  roughness: 0.3,
+  transparent: true,
+});
+
 function create_piece_mesh(player) {
   const piece_geometry = new THREE.SphereGeometry(piece_size / 2, 16, 8);
-  const piece_material_1 = new THREE.MeshStandardMaterial({
-    color: THREE.Color.NAMES.greenyellow,
-  });
-  const piece_material_2 = new THREE.MeshStandardMaterial({
-    color: THREE.Color.NAMES.blueviolet,
-  });
   let material;
   if (player == 1) material = piece_material_1;
   else material = piece_material_2;

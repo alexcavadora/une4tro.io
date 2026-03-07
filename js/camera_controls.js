@@ -2,11 +2,14 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 export const canvas = document.getElementById("canvas");
-export const renderer = new THREE.WebGLRenderer({ canvas });
+export const renderer = new THREE.WebGLRenderer({
+  canvas,
+  antialias: true,
+  alpha: true,
+});
 renderer.setSize(window.innerWidth, window.innerHeight);
 
 export const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xaaaaaa);
 
 //camera and orbit controls
 export const camera = new THREE.PerspectiveCamera(
