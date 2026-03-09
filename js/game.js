@@ -160,7 +160,8 @@ function find_height(row, col) {
   for (height = 0; height < n_pieces; height++) {
     if (game_state[row][col][height] == 0) break;
   }
-  if (height + 1 > current_height) current_height = height + 1;
+  if (height + 1 > current_height && current_height < n_pieces)
+    current_height = height + 1;
   return height;
 }
 

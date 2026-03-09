@@ -22,8 +22,8 @@ camera.position.set(0, 5, 10);
 
 export const orbit_controls = new OrbitControls(camera, renderer.domElement);
 orbit_controls.enablePan = false;
-orbit_controls.minDistance = 12;
-orbit_controls.maxDistance = 20;
+orbit_controls.minDistance = 6;
+orbit_controls.maxDistance = 24;
 orbit_controls.target.set(0, 0, 0);
 
 window.addEventListener("resize", () => {

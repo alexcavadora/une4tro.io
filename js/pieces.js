@@ -3,12 +3,11 @@ import { piece_size, padding_size, pieces_origin } from "./game";
 
 const piece_material_1 = new THREE.MeshStandardMaterial({
   color: THREE.Color.NAMES.gold,
-  roughness: 0.3,
+  roughness: 0.2,
 });
 const piece_material_2 = new THREE.MeshStandardMaterial({
   color: THREE.Color.NAMES.firebrick,
-  roughness: 0.3,
-  transparent: true,
+  roughness: 0.2,
 });
 
 function create_piece_mesh(player) {
